@@ -3,7 +3,7 @@ $(document).ready(function(){
 		
     var random;
 
-    var count = 0;
+    count = 0;
 
     random = newGame();
 
@@ -50,16 +50,17 @@ function newGame(){
 var randomNum = randomize();
 console.log(randomNum);
 
+/*removes list of guesses*/
 $('#guessList').children().remove();
 
-$('#count').text("0");
+count = 0;
+$('#count').text(count);
 
  $('#feedback').text("Make your Guess!");
 
 
+$('#userGuess').val('');
 
-/*this isn't working*/
-/*$('#userGuess').trigger("reset");*/
 
 return randomNum;
 
@@ -86,6 +87,7 @@ if (input > lowestHot && input < highestHot && input != random)
 }
 else if (input == random) {
   $('#feedback').text("You guessed right! The answer is " + random);
+  alert("Congrats! You guessed the right value. It took you " + count + " tries. Click New Game if you'd like to play again!");
 }
 else {
    $('#feedback').text("Your guess is cold!");
