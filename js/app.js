@@ -27,9 +27,14 @@ $(document).ready(function(){
   	$('#guessButton').on('click', function(e){
       e.preventDefault();
       var guessValue = $('#userGuess').val();
+      
       /*counting the number of guesses*/
       count++;
       $('#count').text(count);
+
+      /*add guesses to the list*/
+      $('#guessList').append("<li>" + guessValue + "</li>");
+
 
       /*checking whether guess was hot or cold*/
       HotOrCold(random, guessValue);
@@ -45,9 +50,16 @@ function newGame(){
 var randomNum = randomize();
 console.log(randomNum);
 
-/*this isn't working*/
+$('#guessList').children().remove();
 
-$('#userGuess').attr('placeholder', 'Enter your Guess');
+$('#count').text("0");
+
+ $('#feedback').text("Make your Guess!");
+
+
+
+/*this isn't working*/
+/*$('#userGuess').trigger("reset");*/
 
 return randomNum;
 
