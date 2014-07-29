@@ -3,6 +3,8 @@ $(document).ready(function(){
 		
     var random;
 
+    var count = 0;
+
     random = newGame();
 
     $(".new").on('click', function(){
@@ -25,6 +27,11 @@ $(document).ready(function(){
   	$('#guessButton').on('click', function(e){
       e.preventDefault();
       var guessValue = $('#userGuess').val();
+      /*counting the number of guesses*/
+      count++;
+      $('#count').text(count);
+
+      /*checking whether guess was hot or cold*/
       HotOrCold(random, guessValue);
     });
 
@@ -37,6 +44,10 @@ function newGame(){
 
 var randomNum = randomize();
 console.log(randomNum);
+
+/*this isn't working*/
+
+$('#userGuess').attr('placeholder', 'Enter your Guess');
 
 return randomNum;
 
@@ -57,13 +68,17 @@ var highestHot, lowestHot;
 highestHot = random + 20;
 lowestHot = random - 20;
 
-if (input >= lowestHot && input <= highestHot)
+if (input > lowestHot && input < highestHot && input != random)
 {
-  console.log("It's hot!");
+  $('#feedback').text("Your guess is hot!");
 }
-else{
-  console.log("It's cold!");
+else if (input == random) {
+  $('#feedback').text("You guessed right! The answer is " + random);
 }
+else {
+   $('#feedback').text("Your guess is cold!");
+}
+
 
 }
 
