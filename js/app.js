@@ -28,6 +28,8 @@ $(document).ready(function(){
       e.preventDefault();
       var guessValue = $('#userGuess').val();
       
+      /*checking to see if value input is a number*/
+      if($.isNumeric(guessValue)){
       /*counting the number of guesses*/
       count++;
       $('#count').text(count);
@@ -38,9 +40,15 @@ $(document).ready(function(){
 
       /*checking whether guess was hot or cold*/
       HotOrCold(random, guessValue);
-    });
+    }/*close if statement*/
+    else{
+      alert("Oops, you didn't enter a number! Please enter a numeric value.");
+    }
+
+    }); /*close #guessButton click*/
 
 });
+/*close document ready*/
 
 
 /*starts a new game*/
